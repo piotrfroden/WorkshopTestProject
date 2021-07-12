@@ -1,6 +1,5 @@
 package subscriptionsplans.stepdefinitions;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import subscriptionsplans.steps.SubscriptionPlansSteps;
 import subscriptionsplans.utils.Utils;
@@ -15,7 +14,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.junit.runner.RunWith;
-
+import java.util.concurrent.TimeUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -58,6 +57,8 @@ public class SubscriptionPlansStepDefinitions extends PageObject {
 
   @Then("Set personal data for order")
   public void setOrderPersonalData() throws InterruptedException {
+    assertThat(getDriver().getTitle().equals("Sign Up - Exchangeratesapi")).isTrue();
+    TimeUnit.SECONDS.sleep(3);
     subscriptionPlansSteps.setOrderPersonalData();
   }
 

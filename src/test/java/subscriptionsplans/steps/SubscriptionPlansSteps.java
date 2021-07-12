@@ -49,14 +49,11 @@ public class SubscriptionPlansSteps extends UIInteractionSteps {
     TimeUnit.SECONDS.sleep(2);
     System.out.println("selected options by numberof requests \n" + paneByNumRequests.getText());
     paneByNumRequests.findElement(By.xpath("//*[@class='signup_link']")).click();
-    //paneByNumRequests.findElement(By.className("signup_link")).click();
     return true;
   }
 
   @Step
   public void setOrderPersonalData() throws InterruptedException {
-    assertThat(getDriver().getTitle().equals("Sign Up - Exchangeratesapi")).isTrue();
-    TimeUnit.SECONDS.sleep(3);
     subPlanOrderDataPage.setEmail("test@test.test");
     subPlanOrderDataPage.setPassword("test123");
     subPlanOrderDataPage.setFirstname("Adam");
