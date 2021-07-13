@@ -24,7 +24,7 @@ public class SubscriptionPlansStepDefinitions extends PageObject {
   private final Actor client = Actor.named("client");
   Utils utils;
   SubscriptionPlansSteps subscriptionPlansSteps;
-  boolean isNumberRequestsAccepted = false;
+  String requestedNamePlan = null;
 
   @Before
   public void setTheStage() throws Exception {
@@ -51,8 +51,8 @@ public class SubscriptionPlansStepDefinitions extends PageObject {
 
   @When("User select {string} requests monthly and press sign up")
   public void userSelectNumberOfRequestsMonthly(String numberRequests) throws InterruptedException {
-    System.out.println(numberRequests);
-    isNumberRequestsAccepted = subscriptionPlansSteps.setNumberRequestMonthly(numberRequests);
+    System.out.println("Liczba requestów miesięcznie - " + numberRequests);
+    requestedNamePlan = subscriptionPlansSteps.selectPaneByNumberRequestMonthly(numberRequests);
   }
 
   @Then("Set personal data for order")
@@ -69,7 +69,8 @@ public class SubscriptionPlansStepDefinitions extends PageObject {
 
   @Then("Check plan for given number requests")
   public void checkPlanForGivenRequests(){
-    assertThat(isNumberRequestsAccepted).isTrue();
+    assertThat(requestedNamePlan).isNotNull();;
+    assertThat(subscriptionPlansSteps.getNameOfSelectedPlan().contains(requestedNamePlan)).isTrue();
   }
 
   @After

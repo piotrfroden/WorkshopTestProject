@@ -43,6 +43,12 @@ public class SubPlanOrderDataPage extends PageObject {
   @FindBy(xpath = "//input[@name = 'submit']")
   private WebElement buttonSignUp;
 
+  @FindBy(xpath = "//h2[contains(text(), 'Sign Up: ')]")
+  private WebElement namePlan;
+
+  @FindBy(xpath = "//*[@class='recaptcha-checkbox-border']")
+  private WebElement checkboxCaptcha;
+
   WebDriverWait wdWait;
 
   public SubPlanOrderDataPage() {
@@ -92,5 +98,13 @@ public class SubPlanOrderDataPage extends PageObject {
 
   public void clickSignUp() {
     wdWait.until(ExpectedConditions.visibilityOf(buttonSignUp)).click();
+  }
+
+  public String getSelectedPlanName() {
+    return wdWait.until(ExpectedConditions.visibilityOf(namePlan)).getText();
+  }
+
+  public void clickCaptcha() {
+    wdWait.until(ExpectedConditions.visibilityOf(checkboxCaptcha)).click();
   }
 }
